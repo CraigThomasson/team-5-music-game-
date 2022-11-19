@@ -238,24 +238,11 @@ let sequence = [];
 
 let level = 0;
 
-<<<<<<< HEAD
 function delayPlay(x, n) {
     setTimeout(function() {
         play(n)
     }, 2000 * x);
   }
- 
-function game() {
-    const comAray = ['note-a', 'note-b', 'note-c', 'note-d', 'note-e', 'note-f', 'note-g'];
-    let i = 0
-    for (let notes in comAray) {
-        delayPlay(i, comAray[i])
-        i ++
-    }
-=======
-function audioControls(sound) {
-    play(sound);
-}
 
 function game () {
     level = 1;
@@ -270,7 +257,6 @@ function game () {
         }
     }
     
->>>>>>> 23d3cd4ac8304c8abf80a320bb94fbd00df74bb4
 }
 
 function nextStep() {
