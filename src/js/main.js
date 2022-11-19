@@ -81,13 +81,21 @@ onClick(
 })
 
 
-onClick("buttonGo", () => game())
+onClick("buttonGo", () => audioControls())
 
 let sequence = [];
 
 let level = 0;
 
+function audioControls(sound) {
+    play(sound);
+}
+
 function game () {
+    level = 1;
+    soundSequence = ["note-A", "note-B", "note-C", "note-D", "note-E", "note-F", "note-G"]
+    audioControls(soundSequence)
+
 
 }
 
@@ -103,3 +111,4 @@ function nextRound() {
     const nextSequence = [...sequence];
     nextSequence.push(nextStep());
 }
+
