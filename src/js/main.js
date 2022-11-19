@@ -93,10 +93,15 @@ onClick(
 })
 
 onClick("buttonGo", () => audioControls())
+onClick("buttonGo", () => audioControls())
 
 let sequence = [];
 
 let level = 0;
+
+function audioControls(sound) {
+    play(sound);
+}
 
 function audioControls(sound) {
     play(sound);
@@ -109,12 +114,23 @@ function game () {
         audioControls(soundSequence);
         if (playerSequence === soundSequence) {
             correctAnswer();
+        level = 1;
+    let soundSequence = ["note-A", "note-B", "note-C", "note-D", "note-E", "note-F", "note-G"]
+    for (let i = 0; i < soundSequence.length; i++) {
+        audioControls(soundSequence);
+        if (playerSequence === soundSequence) {
+            correctAnswer();
     
         } else {
             gameOver()
         }
+            } else {
+            gameOver()
+        }
     }
-    
+        
+}
+
 }
 
 function nextStep() {
@@ -129,6 +145,17 @@ function nextRound() {
     const nextSequence = [...sequence];
     nextSequence.push(nextStep());
 }
+
+function correctAnswer() {
+    score++
+    nextRound()
+}
+
+function gameOver() {
+
+}
+
+
 
 function correctAnswer() {
     score++
