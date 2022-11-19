@@ -276,7 +276,4 @@ function correctAnswer() {
     nextRound()
 }
 
-function gameOver() {
-
-}
 
