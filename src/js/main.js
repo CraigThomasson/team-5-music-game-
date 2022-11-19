@@ -257,8 +257,10 @@ function game () {
     
 }
 
+const sounds = ["note-A", "note-B", "note-C", "note-D", "note-E", "note-F", "note-G"];
+
 function nextStep() {
-    const sounds = ["note-A", "note-B", "note-C", "note-D", "note-E", "note-F", "note-G"];
+    
     const random = sounds[Math.floor(Math.random() * sounds.length)];
   
     return random;
@@ -266,6 +268,7 @@ function nextStep() {
 
 function nextRound() {
     level += 1;
+    shuffle()
     const nextSequence = [...sequence];
     nextSequence.push(nextStep());
 }
@@ -277,5 +280,11 @@ function correctAnswer() {
 
 function gameOver() {
 
+}
+
+function shuffle() {
+    shuffledNotes = sounds.sort(function () {
+        return Math.random() - 0.5;
+      });
 }
 
