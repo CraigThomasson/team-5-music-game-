@@ -1,150 +1,10 @@
-import kaboom from "https://unpkg.com/kaboom/dist/kaboom.mjs";
-    
-kaboom({
-    width: 700,
-    height: 500,
-    font: "sinko",
-    canvas: document.querySelector("#mycanvas"),
-    // background: [ 0, 0, 0 ],
-    background: [ 254, 254, 254 ],
-})
 
-
-// load assets
-
-//sounds
-loadSound("note-a", "src/assets/audio/note-a.wav")
-loadSound("note-b", "src/assets/audio/note-b.wav")
-loadSound("note-c", "src/assets/audio/note-c.wav")
-loadSound("note-d", "src/assets/audio/note-d.wav")
-loadSound("note-e", "src/assets/audio/note-e.wav")
-loadSound("note-f", "src/assets/audio/note-f.wav")
-loadSound("note-g", "src/assets/audio/note-g.wav")
-
-//sprites
-loadSprite('button-a', 'src/assets/sprites/button-a.png')
-loadSprite('button-b', 'src/assets/sprites/button-b.png')
-loadSprite('button-c', 'src/assets/sprites/button-c.png')
-loadSprite('button-d', 'src/assets/sprites/button-d.png')
-loadSprite('button-e', 'src/assets/sprites/button-e.png')
-loadSprite('button-f', 'src/assets/sprites/button-f.png')
-loadSprite('button-g', 'src/assets/sprites/button-g.png')
-loadSprite('button-go', 'src/assets/sprites/button-go.png')
-loadSprite('c-note', 'src/assets/sprites/C.png')
-loadSprite('d-note', 'src/assets/sprites/D.png')
-loadSprite('e-note', 'src/assets/sprites/E.png')
-loadSprite('f-note', 'src/assets/sprites/F.png')
-loadSprite('g-note', 'src/assets/sprites/G.png')
-loadSprite('a-note', 'src/assets/sprites/A.png')
-loadSprite('h-note', 'src/assets/sprites/H.png')
-loadSprite('cs-note', 'src/assets/sprites/C-sharp.png')
-loadSprite('line', 'src/assets/sprites/musical-line.png')
 
 
 // buttons
 
 let playerSequence = [];
 let count = 0
-
-const score = add([
-    text("Score: 0"),
-    pos(24, 24),
-    { value: 0 },
-])
-
-const line = add([
-    sprite("line"),
-    pos(0, 350),
-    area(),
-    scale(0.1),
-    'soundButtonC',
-])
-
-const buttonA = add([
-    sprite("button-a"),
-    pos(80, 40),
-    area(),
-    'soundButtonA',
-])
-
-const buttonb = add([
-    sprite("button-b"),
-    pos(80, 120),
-    area(),
-    'soundButtonB',
-])
-
-const buttonc = add([
-    sprite("c-note"),
-    pos(70, 410),
-    scale(0.15),
-    area(),
-    'soundButtonC',
-])
-
-
-const buttond = add([
-    sprite("d-note"),
-    pos(120, 410),
-    scale(0.15),
-    area(),
-    'soundButtonD',
-])
-
-const buttone = add([
-    sprite("e-note"),
-    pos(180, 410),
-    scale(0.15),
-    area(),
-    'soundButtonE',
-])
-
-const buttonf = add([
-    sprite("f-note"),
-    pos(240, 410),
-    scale(0.15),
-    area(),
-    'soundButtonF',
-])
-
-const buttong = add([
-    sprite("g-note"),
-    pos(300, 410),
-    scale(0.15),
-    area(),
-    'soundButtonG',
-])
-
-const buttona = add([
-    sprite("a-note"),
-    pos(360, 410),
-    scale(0.15),
-    area(),
-    'soundButtonA',
-])
-
-const buttonh = add([
-    sprite("h-note"),
-    pos(420, 410),
-    scale(0.15),
-    area(),
-    'soundButtonH',
-])
-
-const buttoncs = add([
-    sprite("cs-note"),
-    pos(480, 410),
-    scale(0.15),
-    area(),
-    'soundButtonCS',
-])
-
-const buttonGo = add([
-    sprite("button-go"),
-    pos(80, 220),
-    area(),
-    'buttonGo'
-])
 
 // game logic
 
@@ -233,6 +93,7 @@ onClick(
 })
 
 onClick("buttonGo", () => audioControls())
+onClick("buttonGo", () => audioControls())
 
 let sequence = [];
 
@@ -244,8 +105,18 @@ function delayPlay(x, n) {
     }, 2000 * x);
   }
 
+function audioControls(sound) {
+    play(sound);
+}
+
 function game () {
     level = 1;
+    let soundSequence = ["note-A", "note-B", "note-C", "note-D", "note-E", "note-F", "note-G"]
+    for (let i = 0; i < soundSequence.length; i++) {
+        audioControls(soundSequence);
+        if (playerSequence === soundSequence) {
+            correctAnswer();
+        level = 1;
     let soundSequence = ["note-A", "note-B", "note-C", "note-D", "note-E", "note-F", "note-G"]
     for (let i = 0; i < soundSequence.length; i++) {
         audioControls(soundSequence);
@@ -255,8 +126,13 @@ function game () {
         } else {
             gameOver()
         }
+            } else {
+            gameOver()
+        }
     }
-    
+        
+}
+
 }
 
 function nextStep() {
@@ -277,3 +153,13 @@ function correctAnswer() {
 }
 
 
+
+
+function correctAnswer() {
+    score++
+    nextRound()
+}
+
+function gameOver() {
+
+}
