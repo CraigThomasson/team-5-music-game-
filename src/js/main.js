@@ -211,7 +211,7 @@ function game () {
 }
 
 function nextStep() {
-    const sounds = ['note-a', 'note-b'];
+    const sounds = ["note-A", "note-B", "note-C", "note-D", "note-E", "note-F", "note-G"];
     const random = sounds[Math.floor(Math.random() * sounds.length)];
   
     return random;
@@ -224,10 +224,11 @@ function nextRound() {
 }
 
 function correctAnswer() {
-
+    score++
+    nextRound()
 }
 
 function gameOver() {
-    
+
 }
 
