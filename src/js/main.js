@@ -228,7 +228,7 @@ onClick(
     "soundButtonG", () => {
         score.value += 1
         score.text = "Score:" + score.value
-        playerSequence.push('note-G')
+        playerSequence.push('note-g')
         console.log(playerSequence)
 })
 
@@ -238,22 +238,26 @@ let sequence = [];
 
 let level = 0;
 
-function game () {
+function delayPlay(x, n) {
+    setTimeout(function() {
+        play(n)
+    }, 2000 * x);
+  }
+ 
+function game() {
     const comAray = ['note-a', 'note-b', 'note-c', 'note-d', 'note-e', 'note-f', 'note-g'];
     let i = 0
     for (let notes in comAray) {
-        setTimeout(() => {  console.log("World!"); }, 5000);
-        play(comAray[i]);
+        delayPlay(i, comAray[i])
         i ++
-
     }
 }
+
 function nextStep() {
     const sounds = ['note-a', 'note-b'];
     const random = sounds[Math.floor(Math.random() * sounds.length)];
-  
     return random;
-  }
+}
 
 function nextRound() {
     level += 1;
