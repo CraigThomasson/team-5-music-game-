@@ -197,10 +197,17 @@ function audioControls(sound) {
 
 function game () {
     level = 1;
-    soundSequence = ["note-A", "note-B", "note-C", "note-D", "note-E", "note-F", "note-G"]
-    audioControls(soundSequence)
-
-
+    let soundSequence = ["note-A", "note-B", "note-C", "note-D", "note-E", "note-F", "note-G"]
+    for (let i = 0; i < soundSequence.length; i++) {
+        audioControls(soundSequence);
+        if (playerSequence === soundSequence) {
+            correctAnswer();
+    
+        } else {
+            gameOver()
+        }
+    }
+    
 }
 
 function nextStep() {
@@ -214,5 +221,13 @@ function nextRound() {
     level += 1;
     const nextSequence = [...sequence];
     nextSequence.push(nextStep());
+}
+
+function correctAnswer() {
+
+}
+
+function gameOver() {
+    
 }
 
