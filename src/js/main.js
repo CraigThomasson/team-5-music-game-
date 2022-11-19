@@ -192,9 +192,15 @@ let sequence = [];
 let level = 0;
 
 function game () {
+    const comAray = ['note-a', 'note-b', 'note-c', 'note-d', 'note-e', 'note-f', 'note-g'];
+    let i = 0
+    for (let notes in comAray) {
+        setTimeout(() => {  console.log("World!"); }, 5000);
+        play(comAray[i]);
+        i ++
 
+    }
 }
-
 function nextStep() {
     const sounds = ['note-a', 'note-b'];
     const random = sounds[Math.floor(Math.random() * sounds.length)];
