@@ -232,18 +232,33 @@ onClick(
         console.log(playerSequence)
 })
 
-onClick("buttonGo", () => game())
+onClick("buttonGo", () => audioControls())
 
 let sequence = [];
 
 let level = 0;
 
-function game () {
+function audioControls(sound) {
+    play(sound);
+}
 
+function game () {
+    level = 1;
+    let soundSequence = ["note-A", "note-B", "note-C", "note-D", "note-E", "note-F", "note-G"]
+    for (let i = 0; i < soundSequence.length; i++) {
+        audioControls(soundSequence);
+        if (playerSequence === soundSequence) {
+            correctAnswer();
+    
+        } else {
+            gameOver()
+        }
+    }
+    
 }
 
 function nextStep() {
-    const sounds = ['note-a', 'note-b'];
+    const sounds = ["note-A", "note-B", "note-C", "note-D", "note-E", "note-F", "note-G"];
     const random = sounds[Math.floor(Math.random() * sounds.length)];
   
     return random;
@@ -254,3 +269,13 @@ function nextRound() {
     const nextSequence = [...sequence];
     nextSequence.push(nextStep());
 }
+
+function correctAnswer() {
+    score++
+    nextRound()
+}
+
+function gameOver() {
+
+}
+
