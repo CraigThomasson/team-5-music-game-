@@ -5,7 +5,8 @@ kaboom({
     height: 500,
     font: "sinko",
     canvas: document.querySelector("#mycanvas"),
-    background: [ 0, 0, 0 ],
+    // background: [ 0, 0, 0 ],
+    background: [ 254, 254, 254 ],
 })
 
 
@@ -29,6 +30,15 @@ loadSprite('button-e', 'src/assets/sprites/button-e.png')
 loadSprite('button-f', 'src/assets/sprites/button-f.png')
 loadSprite('button-g', 'src/assets/sprites/button-g.png')
 loadSprite('button-go', 'src/assets/sprites/button-go.png')
+loadSprite('c-note', 'src/assets/sprites/C.png')
+loadSprite('d-note', 'src/assets/sprites/D.png')
+loadSprite('e-note', 'src/assets/sprites/E.png')
+loadSprite('f-note', 'src/assets/sprites/F.png')
+loadSprite('g-note', 'src/assets/sprites/G.png')
+loadSprite('a-note', 'src/assets/sprites/A.png')
+loadSprite('h-note', 'src/assets/sprites/H.png')
+loadSprite('cs-note', 'src/assets/sprites/C-sharp.png')
+loadSprite('line', 'src/assets/sprites/musical-line.png')
 
 
 // buttons
@@ -42,13 +52,20 @@ const score = add([
     { value: 0 },
 ])
 
+const line = add([
+    sprite("line"),
+    pos(0, 350),
+    area(),
+    scale(0.1),
+    'soundButtonC',
+])
+
 const buttonA = add([
     sprite("button-a"),
     pos(80, 40),
     area(),
     'soundButtonA',
 ])
-
 
 const buttonb = add([
     sprite("button-b"),
@@ -57,39 +74,69 @@ const buttonb = add([
     'soundButtonB',
 ])
 
-const buttonC = add([
-    sprite("button-c"),
-    pos(140, 40),
+const buttonc = add([
+    sprite("c-note"),
+    pos(70, 410),
+    scale(0.15),
     area(),
     'soundButtonC',
 ])
 
-const buttonD = add([
-    sprite("button-d"),
-    pos(140, 120),
+
+const buttond = add([
+    sprite("d-note"),
+    pos(120, 410),
+    scale(0.15),
     area(),
     'soundButtonD',
 ])
 
-const buttonE = add([
-    sprite("button-e"),
-    pos(200, 40),
+const buttone = add([
+    sprite("e-note"),
+    pos(180, 410),
+    scale(0.15),
     area(),
     'soundButtonE',
 ])
 
-const buttonF = add([
-    sprite("button-f"),
-    pos(200, 120),
+const buttonf = add([
+    sprite("f-note"),
+    pos(240, 410),
+    scale(0.15),
     area(),
     'soundButtonF',
 ])
 
-const buttonG = add([
-    sprite("button-g"),
-    pos(260, 40),
+const buttong = add([
+    sprite("g-note"),
+    pos(300, 410),
+    scale(0.15),
     area(),
     'soundButtonG',
+])
+
+const buttona = add([
+    sprite("a-note"),
+    pos(360, 410),
+    scale(0.15),
+    area(),
+    'soundButtonA',
+])
+
+const buttonh = add([
+    sprite("h-note"),
+    pos(420, 410),
+    scale(0.15),
+    area(),
+    'soundButtonH',
+])
+
+const buttoncs = add([
+    sprite("cs-note"),
+    pos(480, 410),
+    scale(0.15),
+    area(),
+    'soundButtonCS',
 ])
 
 const buttonGo = add([
