@@ -41,7 +41,7 @@ $(document).ready(function () {
         if (roundStarted !== true) {
             console.log(event.target.id + ' clicked!');
             let key = event.target
-            let audio = new Audio('src/assets/audio/' +  event.target.id + '.mp3')
+            let audio = new Audio('src/assets/audio/' + event.target.id + '.mp3')
             audio.play()
 
             // highlight keys when clicked
@@ -90,6 +90,7 @@ $(document).ready(function () {
             // highlight the key that is playing
             let fileName = (n.src.split('/').splice(2)[4]).slice(0, -4); // split file src url into parts, grab the last one and remove file extension
             let key = document.getElementById(`${fileName}`)
+
             if (hard===false) {
                 key.classList.add("highlight")
                 // remove highlight
@@ -116,17 +117,6 @@ $(document).ready(function () {
             let note = sound.src.split('/').splice(2)[4].slice(0, -4)
             noteSequence.push(note)
         }
-        // display message box asking player to repeating the sequence
-
-        //check if correct 
-        // if (playerSequence === soundSequence) {
-        //         correctAnswer();
-
-        //     } else {
-        //         gameOver()
-        //     }
-
-        // increase level
     }
 
     //Check if given answer is correct -> playerSequence does not seem to update the global list so 
