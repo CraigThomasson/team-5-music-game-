@@ -14,7 +14,7 @@ let noteD = new Audio("src/assets/audio/note-d.wav")
 let noteE = new Audio("src/assets/audio/note-e.wav")
 let noteF = new Audio("src/assets/audio/note-f.wav")
 let noteG = new Audio("src/assets/audio/note-g.wav")
-let noteA = new Audio("src/assets/audio/note-a.wav")
+let noteA = new Audio("src/assets/audio/note-a.wav") 
 let noteB = new Audio("src/assets/audio/note-b.wav") // missing this sound
 let noteCS = new Audio("src/assets/audio/note-cs.wav") // missing this sound
 // let sounds = [noteC, noteD, noteE, noteF, noteG, noteA, noteB, noteCS]
@@ -24,18 +24,18 @@ let sounds = [noteC, noteD, noteE, noteF, noteG, noteA]
 
 // add event listener to the music keys
 $(".key").click(function (event) {
-    console.log(event.target.id + ' clicked!');
-    let key = event.target
-    let audio = new Audio('src/assets/audio/' +  event.target.id + '.wav')
-    audio.play()
 
-    // highlight keys when clicked
-    key.classList.add("highlight")
-    // remove highlight after a set time
-    removeHighlight(key)
-
-    // check if round started and record player responses
-    if (round_started === true) {
+    if (round_started === false) {
+        console.log(event.target.id + ' clicked!');
+        let key = event.target
+        let audio = new Audio('src/assets/audio/' +  event.target.id + '.wav')
+        audio.play()
+    
+        // highlight keys when clicked
+        key.classList.add("highlight")
+        // remove highlight after a set time
+        removeHighlight(key)
+    } else if (round_started === true ) {
         let response = new Audio('src/assets/audio/' +  event.target.id + '.wav');
         playerSequence.push(response);
         console.log(playerSequence);
@@ -78,14 +78,21 @@ function game() {
     random = random.slice(0, level+3); // added 2 for testing
     
     // play sequence
-
     let soundSequence = random
+    let sequenceCount = 0
+    let sequencelenght = soundSequence.length
+    console.log('soundsequence length', sequencelenght)
     for (let sound of soundSequence) {
         console.log(soundSequence.indexOf(sound))
         delayPlay(soundSequence.indexOf(sound), sound)
-        
+        sequenceCount ++
+        console.log('sc', sequenceCount)
     }
     round_started = true
+    if (sequenceCount === sequencelenght-1) {
+        PlayerTurn()
+    }
+
     // display message box asking player to repeating the sequence
 
     //check if correct 
@@ -97,7 +104,11 @@ function game() {
         //     }
         
     // level++ increase level
+}
 
+function PlayerTurn() {
+    console.log('playing')
+    round_started = false
 }
 
 //Check if given answer is correct -> playerSequence does not seem to update the global list so 
@@ -148,6 +159,8 @@ function correctAnswer() {
 function gameOver() {
 
 }
+<<<<<<< HEAD
+=======
 
 function shuffle() {
     shuffledNotes = sounds.sort(function () {
@@ -155,4 +168,5 @@ function shuffle() {
       });
 }
 
+>>>>>>> 9e70cffc7b6445a5cdb3a8893797befce5cbff34
 });
