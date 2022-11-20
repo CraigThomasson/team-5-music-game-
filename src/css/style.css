@@ -121,7 +121,9 @@ nav a {
 
 /* 5. Game page */
 
-
+.highlight {
+    transform: scale(1.2);
+}
 
 .key {
     height: 200px;
