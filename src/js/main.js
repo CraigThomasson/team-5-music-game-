@@ -4,7 +4,7 @@ $(document).ready(function() {
     let playerSequence = [];
     let count;
     let score;
-    let round_started = false;
+    let roundStarted = false;
     
     let soundSequence;
     let level = 0;
@@ -24,21 +24,29 @@ $(document).ready(function() {
     
     // add event listener to the music keys
     $(".key").click(function (event) {
-        console.log(event.target.id + ' clicked!');
-        let key = event.target
-        let audio = new Audio('src/assets/audio/' +  event.target.id + '.wav')
-        audio.play()
-    
-        // highlight keys when clicked
-        key.classList.add("highlight")
-        // remove highlight after a set time
-        removeHighlight(key)
-    
+        if  (roundStarted !== true) {
+            console.log(event.target.id + ' clicked!');
+            let key = event.target
+            let audio = new Audio('src/assets/audio/' +  event.target.id + '.wav')
+            audio.play()
+        
+            // highlight keys when clicked
+            key.classList.add("highlight")
+            // remove highlight after a set time
+            removeHighlight(key)
+        }
+
         // check if round started and record player responses
-        if (round_started === true) {
+        if (roundStarted === true) {
             let response = new Audio('src/assets/audio/' +  event.target.id + '.wav');
-            playerSequence.push(response);
-            console.log(playerSequence);
+            console.log(soundSequence.length);
+                if (playerSequence.length < soundSequence.length) {
+                    // let response = new Audio('src/assets/audio/' +  event.target.id + '.wav');
+                    playerSequence.push(response);
+                    console.log(playerSequence.length);
+                }else{
+                    checkCorrect()
+                }      
         }
     });
     
@@ -69,23 +77,23 @@ $(document).ready(function() {
       }
     
     function game() {
-    
         let level = 1;
+        roundStarted = true
         // generate random sequence of sounds
         let random = shuffle()
-    
+        
         // truncate random sequence to equal level
         random = random.slice(0, level+3); // added 2 for testing
         
         // play sequence
-    
-        let soundSequence = random
+        soundSequence = random
         for (let sound of soundSequence) {
             console.log(soundSequence.indexOf(sound))
             delayPlay(soundSequence.indexOf(sound), sound)
             
         }
-        round_started = true
+       
+
         // display message box asking player to repeating the sequence
     
         //check if correct 
@@ -111,7 +119,7 @@ $(document).ready(function() {
                 console.log("You got it wrong this time")
             }
         }
-        round_started = false;
+        roundStarted = false;
     }
     
     $("#test-btn").click(checkCorrect); // button to initiate functions for testing
