@@ -5,7 +5,7 @@ Based on the original 'Simon' electronic short-term memory game launched in 1978
 
 ![Simon](src/assets/image/simon.PNG)
 
-Welcome to <a href="https://" target="_blank" rel="noopener">The Chain</a>
+Welcome to <a href="https://craigthomasson.github.io/team-5-music-game-/" target="_blank" rel="noopener">The Chain</a>
 
 ![Home Page](./screenshot.png)
 
@@ -42,7 +42,7 @@ Once the player clicks the start button on the homepage they are taken to the ga
 
 The game logic was designed with the original 'Simon' logic in mind. This is the logic workflow that was agreed on:
 
-![Game Logic Workflow](src/assets/image/chain_workflow%20chart.jpg)
+![Game Logic Workflow](src/assets/image/workflow-logic.jpg)
 
 Once you click the 'go' button you will hear a note played, and the corresponding note button will be highlighted. 
 
@@ -50,12 +50,9 @@ The user has to click the same note button to pass the level.
 
 Once they have passed the intial levels of learning each of the 7 notes, the computer will the begin to randomly generate longer and longer sequences of notes, until they are no longer capable of remembering and repeating back the full sequence. Once they repeat an incorrect sequence of notes back, game is over. 
 
-## Setup
-
 ### Deployed link
 
-[Click here to play!](https://www.example.com)
-
+[Click here to play!](https://craigthomasson.github.io/team-5-music-game-/)
 
 ## Credits
 
@@ -67,8 +64,8 @@ Once they have passed the intial levels of learning each of the 7 notes, the com
 
 ### Team Members
 
-* [Craig Thomasson Linkedin](https://www.linkedin.com/in/craig-thomasson-webdev/)
-* [Karolina Cisek Linkedin](https://www.linkedin.com/in/k-c-n/)
+* [Craig Thomasson](https://www.linkedin.com/in/craig-thomasson-webdev/)
+* [Karolina Cisek](https://www.linkedin.com/in/k-c-n/)
 * [Eric Hagman](https://www.linkedin.com/in/erikhgm/)
 * [Kelly Hutchison](https://www.linkedin.com/in/kellyhutchison/)
 
