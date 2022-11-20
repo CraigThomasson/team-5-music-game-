@@ -9,6 +9,7 @@ $(document).ready(function () {
 
     let soundSequence;
     let level = 1
+    let hard = false
 
     let noteC = new Audio("src/assets/audio/note-c.mp3")
     let noteD = new Audio("src/assets/audio/note-d.mp3")
@@ -25,6 +26,16 @@ $(document).ready(function () {
     // $("#scorebox").html(score);
     // $("#level").html(level);
 
+    $("#hard").click(function(event) {
+        hard = !hard;
+        console.log(hard === true)
+        if (hard) {
+            $("#hard").html("Hard");
+        } else if (!hard) {
+            $("#hard").html("Easy");
+        }
+      });
+
     // add event listener to the music keys
     $(".key").click(function (event) {
         if (roundStarted !== true) {
@@ -37,6 +48,7 @@ $(document).ready(function () {
             key.classList.add("highlight")
             // remove highlight after a set time
             removeHighlight(key)
+
         }
 
         // check if round started and record player responses
@@ -78,10 +90,13 @@ $(document).ready(function () {
             // highlight the key that is playing
             let fileName = (n.src.split('/').splice(2)[4]).slice(0, -4); // split file src url into parts, grab the last one and remove file extension
             let key = document.getElementById(`${fileName}`)
-            key.classList.add("highlight")
-            // remove highlight
-            removeHighlight(key)
-        }, 1200 * x);
+
+            if (hard===false) {
+                key.classList.add("highlight")
+                // remove highlight
+                removeHighlight(key)
+            }
+        }, 1500 * x);
     }
 
     function game() {
