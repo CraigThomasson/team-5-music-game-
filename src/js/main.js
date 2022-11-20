@@ -1,260 +1,117 @@
-import kaboom from "https://unpkg.com/kaboom/dist/kaboom.mjs";
-    
-kaboom({
-    width: 700,
-    height: 500,
-    font: "sinko",
-    canvas: document.querySelector("#mycanvas"),
-    // background: [ 0, 0, 0 ],
-    background: [ 254, 254, 254 ],
-})
+// variable setup
+$(document).ready(function() {
 
+let playerSequence = [];
+let count;
+let score;
+let round_started = false;
 
-// load assets
+let soundSequence;
+let level = 0;
 
-//sounds
-loadSound("note-a", "src/assets/audio/note-a.wav")
-loadSound("note-b", "src/assets/audio/note-b.wav")
-loadSound("note-c", "src/assets/audio/note-c.wav")
-loadSound("note-d", "src/assets/audio/note-d.wav")
-loadSound("note-e", "src/assets/audio/note-e.wav")
-loadSound("note-f", "src/assets/audio/note-f.wav")
-loadSound("note-g", "src/assets/audio/note-g.wav")
-
-//sprites
-loadSprite('button-a', 'src/assets/sprites/button-a.png')
-loadSprite('button-b', 'src/assets/sprites/button-b.png')
-loadSprite('button-c', 'src/assets/sprites/button-c.png')
-loadSprite('button-d', 'src/assets/sprites/button-d.png')
-loadSprite('button-e', 'src/assets/sprites/button-e.png')
-loadSprite('button-f', 'src/assets/sprites/button-f.png')
-loadSprite('button-g', 'src/assets/sprites/button-g.png')
-loadSprite('button-go', 'src/assets/sprites/button-go.png')
-loadSprite('c-note', 'src/assets/sprites/C.png')
-loadSprite('d-note', 'src/assets/sprites/D.png')
-loadSprite('e-note', 'src/assets/sprites/E.png')
-loadSprite('f-note', 'src/assets/sprites/F.png')
-loadSprite('g-note', 'src/assets/sprites/G.png')
-loadSprite('a-note', 'src/assets/sprites/A.png')
-loadSprite('h-note', 'src/assets/sprites/H.png')
-loadSprite('cs-note', 'src/assets/sprites/C-sharp.png')
-loadSprite('line', 'src/assets/sprites/musical-line.png')
-
+let noteC = new Audio("src/assets/audio/note-c.wav")
+let noteD = new Audio("src/assets/audio/note-d.wav")
+let noteE = new Audio("src/assets/audio/note-e.wav")
+let noteF = new Audio("src/assets/audio/note-f.wav")
+let noteG = new Audio("src/assets/audio/note-g.wav")
+let noteA = new Audio("src/assets/audio/note-a.wav")
+let noteB = new Audio("src/assets/audio/note-b.wav") // missing this sound
+let noteCS = new Audio("src/assets/audio/note-cs.wav") // missing this sound
+// let sounds = [noteC, noteD, noteE, noteF, noteG, noteA, noteB, noteCS]
+let sounds = [noteC, noteD, noteE, noteF, noteG, noteA]
 
 // buttons
 
-let playerSequence = [];
-let count = 0
+// add event listener to the music keys
+$(".key").click(function (event) {
+    console.log(event.target.id + ' clicked!');
+    let key = event.target
+    let audio = new Audio('src/assets/audio/' +  event.target.id + '.wav')
+    audio.play()
 
-const score = add([
-    text("Score: 0"),
-    pos(24, 24),
-    { value: 0 },
-])
+    // highlight keys when clicked
+    key.classList.add("highlight")
+    // remove highlight after a set time
+    removeHighlight(key)
 
-const line = add([
-    sprite("line"),
-    pos(0, 350),
-    area(),
-    scale(0.1),
-    'soundButtonC',
-])
+    // check if round started and record player responses
+    if (round_started === true) {
+        let response = new Audio('src/assets/audio/' +  event.target.id + '.wav');
+        playerSequence.push(response);
+        console.log(playerSequence);
+    }
+});
 
-const buttonA = add([
-    sprite("button-a"),
-    pos(80, 40),
-    area(),
-    'soundButtonA',
-])
+// Remove highlight from key function
+let removeHighlight = (key) => {
+    setTimeout(function () {
+    key.classList.remove("highlight");
+}, 1000);
+}
 
-const buttonb = add([
-    sprite("button-b"),
-    pos(80, 120),
-    area(),
-    'soundButtonB',
-])
-
-const buttonc = add([
-    sprite("c-note"),
-    pos(70, 410),
-    scale(0.15),
-    area(),
-    'soundButtonC',
-])
-
-
-const buttond = add([
-    sprite("d-note"),
-    pos(120, 410),
-    scale(0.15),
-    area(),
-    'soundButtonD',
-])
-
-const buttone = add([
-    sprite("e-note"),
-    pos(180, 410),
-    scale(0.15),
-    area(),
-    'soundButtonE',
-])
-
-const buttonf = add([
-    sprite("f-note"),
-    pos(240, 410),
-    scale(0.15),
-    area(),
-    'soundButtonF',
-])
-
-const buttong = add([
-    sprite("g-note"),
-    pos(300, 410),
-    scale(0.15),
-    area(),
-    'soundButtonG',
-])
-
-const buttona = add([
-    sprite("a-note"),
-    pos(360, 410),
-    scale(0.15),
-    area(),
-    'soundButtonA',
-])
-
-const buttonh = add([
-    sprite("h-note"),
-    pos(420, 410),
-    scale(0.15),
-    area(),
-    'soundButtonH',
-])
-
-const buttoncs = add([
-    sprite("cs-note"),
-    pos(480, 410),
-    scale(0.15),
-    area(),
-    'soundButtonCS',
-])
-
-const buttonGo = add([
-    sprite("button-go"),
-    pos(80, 220),
-    area(),
-    'buttonGo'
-])
+// initiate game() function on clicking "Go"
+$("#go-btn").click(game)
 
 // game logic
 
-onClick(
-    "soundButtonA", () => play('note-a')
-    )
 
-onClick(
-    "soundButtonA", () => {
-        score.value += 1
-        score.text = "Score:" + score.value
-        playerSequence.push('note-a')
-        console.log(playerSequence)
-})
+function delayPlay(x, n) {  // x - array index, n - file to play
+    setTimeout(function() {
+        n.play()
+        console.log(n)
+        // highlight the key that is playing
+        let fileName = (n.src.split('/').splice(2)[4]).slice(0, -4); // split file src url into parts, grab the last one and remove file extension
+        let key = document.getElementById(`${fileName}`)
+        key.classList.add("highlight")
+        // remove highlight
+        removeHighlight(key)
+    }, 1500 * x);
+  }
 
-onClick(
-    "soundButtonB", () => play('note-b'),
-    )
+function game() {
 
-onClick(
-    "soundButtonB", () => {
-        score.value += 1
-        score.text = "Score:" + score.value
-        playerSequence.push('note-b')
-        console.log(playerSequence)
-})
+    let level = 1;
+    // generate random sequence of sounds
+    let random = shuffle()
 
-onClick(
-    "soundButtonC", () => play('note-c'),
-    )
+    // truncate random sequence to equal level
+    random = random.slice(0, level+3); // added 2 for testing
+    
+    // play sequence
 
-onClick(
-    "soundButtonC", () => {
-        score.value += 1
-        score.text = "Score:" + score.value
-        playerSequence.push('note-c')
-        console.log(playerSequence)
-})
+    let soundSequence = random
+    for (let sound of soundSequence) {
+        console.log(soundSequence.indexOf(sound))
+        delayPlay(soundSequence.indexOf(sound), sound)
+        
+    }
+    round_started = true
+    // display message box asking player to repeating the sequence
 
-onClick(
-    "soundButtonD", () => play('note-d'),
-    )
+    //check if correct 
+   // if (playerSequence === soundSequence) {
+        //         correctAnswer();
+        
+        //     } else {
+        //         gameOver()
+        //     }
+        
+    // level++ increase level
 
-onClick(
-    "soundButtonD", () => {
-        score.value += 1
-        score.text = "Score:" + score.value
-        playerSequence.push('note-d')
-        console.log(playerSequence)
-})
-
-onClick(
-    "soundButtonE", () => play('note-e'),
-    )
-
-onClick(
-    "soundButtonE", () => {
-        score.value += 1
-        score.text = "Score:" + score.value
-        playerSequence.push('note-e')
-        console.log(playerSequence)
-})
-
-onClick(
-    "soundButtonF", () => play('note-f'),
-    )
-
-onClick(
-    "soundButtonF", () => {
-        score.value += 1
-        score.text = "Score:" + score.value
-        playerSequence.push('note-f')
-        console.log(playerSequence)
-})
-
-onClick(
-    "soundButtonG", () => play('note-g'),
-    )
-
-onClick(
-    "soundButtonG", () => {
-        score.value += 1
-        score.text = "Score:" + score.value
-        playerSequence.push('note-G')
-        console.log(playerSequence)
-})
-
-onClick("buttonGo", () => audioControls())
-
-let sequence = [];
-
-let level = 0;
-
-function audioControls(sound) {
-    play(sound);
 }
 
-function game () {
-    level = 1;
-    let soundSequence = ["note-A", "note-B", "note-C", "note-D", "note-E", "note-F", "note-G"]
-    for (let i = 0; i < soundSequence.length; i++) {
-        audioControls(soundSequence);
+//Check if given answer is correct -> playerSequence does not seem to update the global list so 
+function checkCorrect() {
+    console.log(playerSequence)
+    console.log(soundSequence)
+    if (playerSequence.length = soundSequence.length) {
         if (playerSequence === soundSequence) {
-            correctAnswer();
-    
+            console.log("You are correct")
         } else {
-            gameOver()
+            console.log("You got it wrong this time")
         }
     }
-    
+    round_started = false;
 }
 
 const sounds = ["note-A", "note-B", "note-C", "note-D", "note-E", "note-F", "note-G"];
@@ -265,6 +122,16 @@ function nextStep() {
   
     return random;
   }
+$("#test-btn").click(checkCorrect); // button to initiate functions for testing
+
+// shuffle sequence
+function shuffle() {
+    let shuffledNotes = sounds.sort(function () {
+        return Math.random() - 0.5;
+      });
+      console.log(shuffledNotes)
+      return shuffledNotes
+    }
 
 function nextRound() {
     level += 1;
@@ -288,3 +155,4 @@ function shuffle() {
       });
 }
 
+});
