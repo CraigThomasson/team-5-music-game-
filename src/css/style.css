@@ -13,7 +13,12 @@
 body {
     font-family: 'Russo One', sans-serif;
     min-height: 100vh;
-    background-image: linear-gradient(to bottom right, rgb(245, 195, 97) 0%, rgb(94, 48, 173) 51%, #30D2BE 100%);
+    background-image: url("../assets/image/background-img.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: left;
+
+    /* background-image: linear-gradient(to bottom right, rgb(245, 195, 97) 0%, rgb(94, 48, 173) 51%, #30D2BE 100%); */
 }
 
 h1,
@@ -65,17 +70,24 @@ h3 {
     background-color: rgb(56, 118, 139);
 }
 
+
+/* 2. Header */
+
 .black {
     background-color: rgb(34, 34, 34);
 }
 
-/* 2. Header */
-
-.nav-link-color {
-    color: #30D2BE;
+.navbar-dark .navbar-nav .nav-link {
+    color: rgb(89, 163, 190);
 }
 
 /* 3. Landing page */
+
+.welcome {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
 .main-btn {
     border-radius: 50px;
     padding: 8px 25px;
@@ -84,16 +96,19 @@ h3 {
     font-weight: 500;
     letter-spacing: 1px;
     transition: 0.3s;
-    background: #fc4a1a;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #f7b733, #fc4a1a);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #f7b733, #fc4a1a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #fc4a1a;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #f7b733, #fc4a1a);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #f7b733, #fc4a1a);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     color: #fff;
     border: 3px solid #eee;
 
 }
 
 .main-btn:hover {
-    background:rgb(244, 165, 7);
+    background: rgb(244, 165, 7);
     color: #fff;
 }
 
