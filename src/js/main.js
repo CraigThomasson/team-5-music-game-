@@ -10,14 +10,14 @@ $(document).ready(function () {
     let soundSequence;
     let level = 1
 
-    let noteC = new Audio("src/assets/audio/note-c.wav")
-    let noteD = new Audio("src/assets/audio/note-d.wav")
-    let noteE = new Audio("src/assets/audio/note-e.wav")
-    let noteF = new Audio("src/assets/audio/note-f.wav")
-    let noteG = new Audio("src/assets/audio/note-g.wav")
-    let noteA = new Audio("src/assets/audio/note-a.wav")
-    let noteB = new Audio("src/assets/audio/note-b.wav") // missing this sound
-    let noteCS = new Audio("src/assets/audio/note-cs.wav") // missing this sound
+    let noteC = new Audio("src/assets/audio/note-c.mp3")
+    let noteD = new Audio("src/assets/audio/note-d.mp3")
+    let noteE = new Audio("src/assets/audio/note-e.mp3")
+    let noteF = new Audio("src/assets/audio/note-f.mp3")
+    let noteG = new Audio("src/assets/audio/note-g.mp3")
+    let noteA = new Audio("src/assets/audio/note-a.mp3")
+    let noteB = new Audio("src/assets/audio/note-b.mp3") // missing this sound
+    let noteCS = new Audio("src/assets/audio/note-cs.mp3") // missing this sound
     // let sounds = [noteC, noteD, noteE, noteF, noteG, noteA, noteB, noteCS]
     let sounds = [noteC, noteD, noteE, noteF, noteG, noteA]
 
@@ -30,7 +30,7 @@ $(document).ready(function () {
         if (roundStarted !== true) {
             console.log(event.target.id + ' clicked!');
             let key = event.target
-            let audio = new Audio('src/assets/audio/' + event.target.id + '.wav')
+            let audio = new Audio('src/assets/audio/' + event.target.id + '.mp3')
             audio.play()
 
             // highlight keys when clicked
@@ -42,7 +42,7 @@ $(document).ready(function () {
         // check if round started and record player responses
         if (roundStarted === true) {
             console.log(soundSequence.length);
-            let audio = new Audio('src/assets/audio/' + event.target.id + '.wav');
+            let audio = new Audio('src/assets/audio/' + event.target.id + '.mp3');
             audio.play()
             let response = event.target.id
 
@@ -81,7 +81,7 @@ $(document).ready(function () {
             key.classList.add("highlight")
             // remove highlight
             removeHighlight(key)
-        }, 1500 * x);
+        }, 1200 * x);
     }
 
     function game() {
@@ -102,17 +102,6 @@ $(document).ready(function () {
             let note = sound.src.split('/').splice(2)[4].slice(0, -4)
             noteSequence.push(note)
         }
-        // display message box asking player to repeating the sequence
-
-        //check if correct 
-        // if (playerSequence === soundSequence) {
-        //         correctAnswer();
-
-        //     } else {
-        //         gameOver()
-        //     }
-
-        // increase level
     }
 
     //Check if given answer is correct -> playerSequence does not seem to update the global list so 
