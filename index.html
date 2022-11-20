@@ -28,7 +28,7 @@
             <a class="nav-link" href="index.html">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Rules</a>
+            <a class="nav-link" data-toggle="modal" data-target=".bd-modal" href="#">Rules</a>
           </li>
         </ul>
       </div>
@@ -52,7 +52,7 @@
         <button class="main-btn yellow"><a href="game.html">Start
           </a></button>
         <button class="main-btn yellow ml-5">
-          <a href="#">Rules
+          <a data-toggle="modal" data-target=".bd-modal" href="#">Rules
           </a>
         </button>
       </div>
@@ -60,6 +60,31 @@
 
   <!-- Footer -->
   <footer class="footer bg-dark"></footer>
+
+  <!-- modal -->
+  <div class="modal bd-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Game rules:</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body pl-5">
+          <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
   <!-- js scripts -->
