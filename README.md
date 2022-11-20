@@ -1,108 +1,74 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+#  **The Chain**  
+## *Test your listening skills!!*
 
-Welcome CraigThomasson,
+Based on the original 'Simon' electronic short-term memory game launched in 1978, we have created an educational computer-based modern version whereby the player listens to a sequence of notes, and has to repeat them back. Through this playback, the user is training their ear, learning a basic piano octave, and training their short-term memory. 
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+![Simon](src/assets/image/simon.PNG)
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+Welcome to <a href="https://" target="_blank" rel="noopener">The Chain</a>
 
-## Gitpod Reminders
+![Home Page](./screenshot.png)
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+## User Experience
 
-`python3 -m http.server`
+### Wireframes
 
-A blue button should appear to click: _Make Public_,
+We created two wireframes for this game. The homepage and the game page, both created in desktop view, but we hope to make the game responsive and also able to be played on a mobile as well. 
 
-Another blue button should appear to click: _Open Browser_.
+![Home Page wireframe](src/assets/image/homepage-wireframe.PNG)
+![Game Page wireframe](src/assets/image/gamepage-wireframe.PNG)
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+### Colour Scheme
 
-A blue button should appear to click: _Make Public_,
+The colour scheme that we agreed upon for this project stemmed from the following colour palette:
 
-Another blue button should appear to click: _Open Browser_.
+![Colour Palette](src/assets/image/colour-scheme.png)
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+## Features
 
-To log into the Heroku toolbelt CLI:
+### Home Page
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+The home page consists of  Navigation bar, with a logo and menu options for Home and to see the Rules. There is also a rules button in the centre of the homepage which opens up a modal window containing the rules. A second page is displayed to the user below the main game Title, which starts the game. There is a footer at the bottom of the page with links to the team's repository and individual GitHub info. 
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+![Home Page](src/assets/image/homepage.PNG)
 
-------
+### Game Page
 
-## Release History
+![game Page](src/assets/image/gamepage.PNG)
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+Once the player clicks the start button on the homepage they are taken to the game page. The styling remains consitent with the home page for better user experience, and the Navigation bar is still visible if the player wants to return Home or review the rules. A set of seven clickable buttons are visible on the screen which represent a full octave of notes on a piano scale. 
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+## How to play
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+The game logic was designed with the original 'Simon' logic in mind. This is the logic workflow that was agreed on:
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+![Game Logic Workflow](src/assets/image/chain_workflow%20chart.jpg)
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+Once you click the 'go' button you will hear a note played, and the corresponding note button will be highlighted. 
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+The user has to click the same note button to pass the level. 
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+Once they have passed the intial levels of learning each of the 7 notes, the computer will the begin to randomly generate longer and longer sequences of notes, until they are no longer capable of remembering and repeating back the full sequence. Once they repeat an incorrect sequence of notes back, game is over. 
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+## Setup
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+### Deployed link
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+[Click here to play!](https://www.example.com)
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+## Credits
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+### Media
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+* The background image used for this game was sourced from [Pixabay](https://pixabay.com/images/search/music%20background/?pagi=7)
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+* The audio files for the piano note were sourced from [Pixabay](https://pixabay.com/sound-effects/search/octave/)
 
-------
+### Team Members
 
-## FAQ about the uptime script
+* [Craig Thomasson Linkedin](https://www.linkedin.com/in/craig-thomasson-webdev/)
+* [Karolina Cisek Linkedin](https://www.linkedin.com/in/k-c-n/)
+* [Eric Hagman](https://www.linkedin.com/in/erikhgm/)
+* [Kelly Hutchison](https://www.linkedin.com/in/kellyhutchison/)
 
-**Why have you added this script?**
-
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
-
-**How will this affect me?**
-
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
-
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
-
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
-
-**So….?**
-
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
-
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
-
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
-
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
-
----
-
-Happy coding!

@@ -114,6 +114,14 @@ function checkCorrect() {
     round_started = false;
 }
 
+const sounds = ["note-A", "note-B", "note-C", "note-D", "note-E", "note-F", "note-G"];
+
+function nextStep() {
+    
+    const random = sounds[Math.floor(Math.random() * sounds.length)];
+  
+    return random;
+  }
 $("#test-btn").click(checkCorrect); // button to initiate functions for testing
 
 // shuffle sequence
@@ -127,6 +135,7 @@ function shuffle() {
 
 function nextRound() {
     level += 1;
+    shuffle()
     const nextSequence = [...sequence];
     nextSequence.push(nextStep());
 }
@@ -139,4 +148,11 @@ function correctAnswer() {
 function gameOver() {
 
 }
+
+function shuffle() {
+    shuffledNotes = sounds.sort(function () {
+        return Math.random() - 0.5;
+      });
+}
+
 });
