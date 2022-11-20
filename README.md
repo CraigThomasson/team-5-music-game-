@@ -1,5 +1,5 @@
 #  **The Chain**  
-## *Test your listening skills!!*
+## *Hone your listening skills!!*
 
 Based on the original 'Simon' electronic short-term memory game launched in 1978, we have created an educational computer-based modern version whereby the player listens to a sequence of notes, and has to repeat them back. Through this playback, the user is training their ear, learning a basic piano octave, and training their short-term memory. 
 
@@ -44,7 +44,7 @@ The game logic was designed with the original 'Simon' logic in mind. This is the
 
 ![Game Logic Workflow](src/assets/image/workflow-logic.jpg)
 
-Once you click the 'go' button you will hear a note played, and the corresponding note button will be highlighted. 
+Once you click the 'play' button you will hear a note played, and the corresponding note button will be highlighted. 
 
 The user has to click the same note button to pass the level. 
 

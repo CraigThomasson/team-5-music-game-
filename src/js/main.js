@@ -20,7 +20,7 @@ $(document).ready(function () {
     let noteB = new Audio("src/assets/audio/note-b.mp3") // missing this sound
     let noteCS = new Audio("src/assets/audio/note-cs.mp3") // missing this sound
     // let sounds = [noteC, noteD, noteE, noteF, noteG, noteA, noteB, noteCS]
-    let sounds = [noteC, noteD, noteE, noteF, noteG, noteA]
+    let sounds = [noteC, noteD, noteE, noteF, noteG, noteA, noteB]
 
     // buttons
     // $("#scorebox").html(score);
