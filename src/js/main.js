@@ -2,6 +2,7 @@
 $(document).ready(function() {
 
     let playerSequence = [];
+    let noteSequence = [];
     let count;
     let score;
     let roundStarted = false;
@@ -38,15 +39,22 @@ $(document).ready(function() {
 
         // check if round started and record player responses
         if (roundStarted === true) {
-            let response = new Audio('src/assets/audio/' +  event.target.id + '.wav');
+            // let response = new Audio('src/assets/audio/' +  event.target.id + '.wav');
             console.log(soundSequence.length);
-                if (playerSequence.length < soundSequence.length) {
-                    // let response = new Audio('src/assets/audio/' +  event.target.id + '.wav');
+                // if (playerSequence.length < soundSequence.length) {
+                    let audio = new Audio('src/assets/audio/' +  event.target.id + '.wav');
+                    audio.play()
+                    let response = event.target.id
                     playerSequence.push(response);
                     console.log(playerSequence.length);
-                }else{
-                    checkCorrect()
-                }      
+                    if (playerSequence.length == soundSequence.length) {
+                        checkCorrect();
+                        
+                    }
+                // } else {
+                    // check your response button and add event to the button
+                    // checkCorrect()
+                // }      
         }
     });
     
@@ -83,17 +91,16 @@ $(document).ready(function() {
         let random = shuffle()
         
         // truncate random sequence to equal level
-        random = random.slice(0, level+3); // added 2 for testing
-        
+        random = random.slice(0, level+1); // added 2 for testing
         // play sequence
         soundSequence = random
         for (let sound of soundSequence) {
-            console.log(soundSequence.indexOf(sound))
+            // console.log(soundSequence.indexOf(sound.src))
             delayPlay(soundSequence.indexOf(sound), sound)
-            
+            let note = sound.src.split('/').splice(2)[4].slice(0, -4)
+            noteSequence.push(note)    
         }
-       
-
+        playerSequence = []
         // display message box asking player to repeating the sequence
     
         //check if correct 
@@ -104,22 +111,26 @@ $(document).ready(function() {
             //         gameOver()
             //     }
             
-        // level++ increase level
-    
+        level++  // increase level
     }
     
     //Check if given answer is correct -> playerSequence does not seem to update the global list so 
-    function checkCorrect() {
+    function checkCorrect(note) {
         console.log(playerSequence)
-        console.log(soundSequence)
-        if (playerSequence.length = soundSequence.length) {
-            if (playerSequence === soundSequence) {
-                console.log("You are correct")
-            } else {
-                console.log("You got it wrong this time")
-            }
+        console.log(noteSequence)
+        
+        // if (playerSequence.length == soundSequence.length) {
+            if (JSON.stringify(playerSequence) === JSON.stringify(noteSequence)) {
+                console.log("checked player seq:", playerSequence)
+                console.log("Correct!") 
+                alert('Correct!')       
+        } else {
+            console.log("wrong this time! try again")
+            alert("Wrong! Try again!")
         }
         roundStarted = false;
+        playerSequence = []
+        console.log(playerSequence)
     }
     
     $("#test-btn").click(checkCorrect); // button to initiate functions for testing
