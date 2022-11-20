@@ -13,7 +13,12 @@
 body {
     font-family: 'Russo One', sans-serif;
     min-height: 100vh;
-    background-image: linear-gradient(to bottom right, rgb(245, 195, 97) 0%, rgb(94, 48, 173) 51%, #30D2BE 100%);
+    background-image: url("../assets/image/background-img.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: left;
+
+    /* background-image: linear-gradient(to bottom right, rgb(245, 195, 97) 0%, rgb(94, 48, 173) 51%, #30D2BE 100%); */
 }
 
 h1,
