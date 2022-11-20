@@ -1,4 +1,5 @@
 // variable setup
+$(document).ready(function() {
 
 let playerSequence = [];
 let count;
@@ -23,12 +24,16 @@ let sounds = [noteC, noteD, noteE, noteF, noteG, noteA]
 
 // add event listener to the music keys
 $(".key").click(function (event) {
-    
     console.log(event.target.id + ' clicked!');
+    let key = event.target
     let audio = new Audio('src/assets/audio/' +  event.target.id + '.wav')
     audio.play()
+
     // highlight keys when clicked
-    highlightKey(event.target) 
+    key.classList.add("highlight")
+    // remove highlight after a set time
+    removeHighlight(key)
+
     // check if round started and record player responses
     if (round_started === true) {
         let response = new Audio('src/assets/audio/' +  event.target.id + '.wav');
@@ -37,12 +42,11 @@ $(".key").click(function (event) {
     }
 });
 
-function highlightKey(key) { // throws an error "Cannot read properties of undefined (reading 'add')" not sure why
-    console.log(key.id)
-    key.ClassList.add("highlight");
-    setTimeout(function() {
-        key.ClassList.remove("highlight");
-      }, 2000);
+// Remove highlight from key function
+let removeHighlight = (key) => {
+    setTimeout(function () {
+    key.classList.remove("highlight");
+}, 1000);
 }
 
 // initiate game() function on clicking "Go"
@@ -54,8 +58,14 @@ $("#go-btn").click(game)
 function delayPlay(x, n) {  // x - array index, n - file to play
     setTimeout(function() {
         n.play()
+        console.log(n)
+        // highlight the key that is playing
+        let fileName = (n.src.split('/').splice(2)[4]).slice(0, -4); // split file src url into parts, grab the last one and remove file extension
+        let key = document.getElementById(`${fileName}`)
+        key.classList.add("highlight")
+        // remove highlight
+        removeHighlight(key)
     }, 1500 * x);
-
   }
 
 function game() {
@@ -68,11 +78,12 @@ function game() {
     random = random.slice(0, level+3); // added 2 for testing
     
     // play sequence
-    console.log(random)
+
     let soundSequence = random
     for (let sound of soundSequence) {
         console.log(soundSequence.indexOf(sound))
         delayPlay(soundSequence.indexOf(sound), sound)
+        
     }
     round_started = true
     // display message box asking player to repeating the sequence
@@ -85,7 +96,7 @@ function game() {
         //         gameOver()
         //     }
         
-    // level +=1 increase level
+    // level++ increase level
 
 }
 
@@ -128,3 +139,4 @@ function correctAnswer() {
 function gameOver() {
 
 }
+});
