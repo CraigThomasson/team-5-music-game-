@@ -9,13 +9,13 @@ let round_started = false;
 let soundSequence;
 let level = 0;
 
-let noteC = new Audio("src/assets/audio/note-c.wav")
-let noteD = new Audio("src/assets/audio/note-d.wav")
-let noteE = new Audio("src/assets/audio/note-e.wav")
-let noteF = new Audio("src/assets/audio/note-f.wav")
-let noteG = new Audio("src/assets/audio/note-g.wav")
-let noteA = new Audio("src/assets/audio/note-a.wav")
-let noteB = new Audio("src/assets/audio/note-b.wav") // missing this sound
+let noteC = new Audio("src/assets/audio/note-c.mp3")
+let noteD = new Audio("src/assets/audio/note-d.mp3")
+let noteE = new Audio("src/assets/audio/note-e.mp3")
+let noteF = new Audio("src/assets/audio/note-f.mp3")
+let noteG = new Audio("src/assets/audio/note-g.mp3")
+let noteA = new Audio("src/assets/audio/note-a.mp3")
+let noteB = new Audio("src/assets/audio/note-b.mp3") // missing this sound
 let noteCS = new Audio("src/assets/audio/note-cs.wav") // missing this sound
 // let sounds = [noteC, noteD, noteE, noteF, noteG, noteA, noteB, noteCS]
 let sounds = [noteC, noteD, noteE, noteF, noteG, noteA]
