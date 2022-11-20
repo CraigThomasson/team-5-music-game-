@@ -13,7 +13,7 @@ let noteD = new Audio("src/assets/audio/note-d.wav")
 let noteE = new Audio("src/assets/audio/note-e.wav")
 let noteF = new Audio("src/assets/audio/note-f.wav")
 let noteG = new Audio("src/assets/audio/note-g.wav")
-let noteA = new Audio("src/assets/audio/note-a.wav")
+let noteA = new Audio("src/assets/audio/note-a.wav") 
 let noteB = new Audio("src/assets/audio/note-b.wav") // missing this sound
 let noteCS = new Audio("src/assets/audio/note-cs.wav") // missing this sound
 // let sounds = [noteC, noteD, noteE, noteF, noteG, noteA, noteB, noteCS]
@@ -37,12 +37,12 @@ $(".key").click(function (event) {
     }
 });
 
-function highlightKey(key) { // throws an error "Cannot read properties of undefined (reading 'add')" not sure why
-    console.log(key.id)
-    key.ClassList.add("highlight");
+function highlightKey(key) { 
+    console.log("highlight", key.id)
+    key.classList.add("highlight");
     setTimeout(function() {
-        key.ClassList.remove("highlight");
-      }, 2000);
+        key.classList.remove("highlight");
+      }, 500);
 }
 
 // initiate game() function on clicking "Go"
@@ -88,11 +88,6 @@ function game() {
     // level +=1 increase level
 
 }
-function delayPlay(x, n) {
-    setTimeout(function() {
-        play(n)
-    }, 2000 * x);
-  }
 
 //Check if given answer is correct -> playerSequence does not seem to update the global list so 
 function checkCorrect() {
@@ -118,13 +113,6 @@ function shuffle() {
       console.log(shuffledNotes)
       return shuffledNotes
     }
-}
-
-function nextStep() {
-    const sounds = ["note-A", "note-B", "note-C", "note-D", "note-E", "note-F", "note-G"];
-    const random = sounds[Math.floor(Math.random() * sounds.length)];
-    return random;
-}
 
 function nextRound() {
     level += 1;
