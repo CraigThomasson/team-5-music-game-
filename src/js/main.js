@@ -3,12 +3,12 @@ $(document).ready(function() {
 
     let playerSequence = [];
     let noteSequence = [];
-    let count;
-    let score;
+    // let count;
+    let score = 0
     let roundStarted = false;
     
     let soundSequence;
-    let level = 0;
+    let level = 1
     
     let noteC = new Audio("src/assets/audio/note-c.wav")
     let noteD = new Audio("src/assets/audio/note-d.wav")
@@ -22,7 +22,9 @@ $(document).ready(function() {
     let sounds = [noteC, noteD, noteE, noteF, noteG, noteA]
     
     // buttons
-    
+    // $("#scorebox").html(score);
+    // $("#level").html(level);
+
     // add event listener to the music keys
     $(".key").click(function (event) {
         if  (roundStarted !== true) {
@@ -45,11 +47,11 @@ $(document).ready(function() {
                     let audio = new Audio('src/assets/audio/' +  event.target.id + '.wav');
                     audio.play()
                     let response = event.target.id
+                    
                     playerSequence.push(response);
                     console.log(playerSequence.length);
                     if (playerSequence.length == soundSequence.length) {
-                        checkCorrect();
-                        
+                        checkCorrect(); 
                     }
                 // } else {
                     // check your response button and add event to the button
@@ -69,8 +71,6 @@ $(document).ready(function() {
     $("#go-btn").click(game)
     
     // game logic
-    
-    
     function delayPlay(x, n) {  // x - array index, n - file to play
         setTimeout(function() {
             n.play()
@@ -85,13 +85,14 @@ $(document).ready(function() {
       }
     
     function game() {
-        let level = 1;
+        playerSequence = []
+        console.log(level)
         roundStarted = true
         // generate random sequence of sounds
         let random = shuffle()
         
         // truncate random sequence to equal level
-        random = random.slice(0, level+1); // added 2 for testing
+        random = random.slice(0, level); // added 2 for testing
         // play sequence
         soundSequence = random
         for (let sound of soundSequence) {
@@ -100,7 +101,6 @@ $(document).ready(function() {
             let note = sound.src.split('/').splice(2)[4].slice(0, -4)
             noteSequence.push(note)    
         }
-        playerSequence = []
         // display message box asking player to repeating the sequence
     
         //check if correct 
@@ -110,27 +110,35 @@ $(document).ready(function() {
             //     } else {
             //         gameOver()
             //     }
-            
-        level++  // increase level
+
+         // increase level
     }
     
     //Check if given answer is correct -> playerSequence does not seem to update the global list so 
     function checkCorrect(note) {
         console.log(playerSequence)
         console.log(noteSequence)
-        
+
         // if (playerSequence.length == soundSequence.length) {
-            if (JSON.stringify(playerSequence) === JSON.stringify(noteSequence)) {
+        if (JSON.stringify(playerSequence) === JSON.stringify(noteSequence)) {
                 console.log("checked player seq:", playerSequence)
                 console.log("Correct!") 
+                score ++
+                level ++
                 alert('Correct!')       
         } else {
             console.log("wrong this time! try again")
             alert("Wrong! Try again!")
+            level = 1
         }
+        // playerSequence = []
         roundStarted = false;
-        playerSequence = []
         console.log(playerSequence)
+        
+
+        $("#scorebox").html(score);
+        $("#level").html(level);
+  
     }
     
     $("#test-btn").click(checkCorrect); // button to initiate functions for testing
