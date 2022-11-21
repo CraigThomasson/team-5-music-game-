@@ -92,9 +92,10 @@ $(document).ready(function () {
         setTimeout(function () {
             n.play()
             console.log(n)
+            console.log(n.src)
             // highlight the key that is playing
 //             let fileName = (n.src.split('/').splice(2)[4]).slice(0, -4); // split file src url into parts, grab the last one and remove file extension
-//             let fileName = (n.src.split('/').splice(2)[3]).slice(0, -4); // split file src url into parts, grab the last one and remove file extension
+            let fileName = (n.src.split('/').splice(2)[3]).slice(0, -4); // split file src url into parts, grab the last one and remove file extension
             console.log(fileName);
             let key = document.getElementById(`${fileName}`)
 
