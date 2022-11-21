@@ -93,7 +93,9 @@ $(document).ready(function () {
             n.play()
             console.log(n)
             // highlight the key that is playing
-            let fileName = (n.src.split('/').splice(2)[4]).slice(0, -4); // split file src url into parts, grab the last one and remove file extension
+//             let fileName = (n.src.split('/').splice(2)[4]).slice(0, -4); // split file src url into parts, grab the last one and remove file extension
+//             let fileName = (n.src.split('/').splice(2)[3]).slice(0, -4); // split file src url into parts, grab the last one and remove file extension
+            console.log(fileName);
             let key = document.getElementById(`${fileName}`)
 
             if (hard===false) {
@@ -119,7 +121,9 @@ $(document).ready(function () {
         for (let sound of soundSequence) {
             // console.log(soundSequence.indexOf(sound.src))
             delayPlay(soundSequence.indexOf(sound), sound)
-            let note = sound.src.split('/').splice(2)[4].slice(0, -4)
+//             let note = sound.src.split('/').splice(2)[4].slice(0, -4)
+            let note = sound.src.split('/').splice(2)[3].slice(0, -4)
+            console.log(note)
             noteSequence.push(note)
         }
     }
