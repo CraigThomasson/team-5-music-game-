@@ -3,7 +3,6 @@ $(document).ready(function () {
 
     let playerSequence = [];
     let noteSequence = [];
-    // let count;
     let score = 0
     let roundStarted = false;
 
@@ -17,15 +16,10 @@ $(document).ready(function () {
     let noteF = new Audio("src/assets/audio/note-f.mp3")
     let noteG = new Audio("src/assets/audio/note-g.mp3")
     let noteA = new Audio("src/assets/audio/note-a.mp3")
-    let noteB = new Audio("src/assets/audio/note-b.mp3") // missing this sound
-    let noteCS = new Audio("src/assets/audio/note-cs.mp3") // missing this sound
-    // let sounds = [noteC, noteD, noteE, noteF, noteG, noteA, noteB, noteCS]
+    let noteB = new Audio("src/assets/audio/note-b.mp3")
     let sounds = [noteC, noteD, noteE, noteF, noteG, noteA, noteB]
 
-    // buttons
-    // $("#scorebox").html(score);
-    // $("#level").html(level);
-
+    // easy/hard toggle
     $("#hard").click(function(event) {
         hard = !hard;
         console.log(hard === true)
@@ -54,26 +48,17 @@ $(document).ready(function () {
 
         // check if round started and record player responses
         if (roundStarted == true) {
-            console.log(soundSequence.length);
             let audio = new Audio('src/assets/audio/' + event.target.id + '.mp3');
             audio.play()
             let response = event.target.id
-
             playerSequence.push(response);
-            console.log(playerSequence.length);
 
             let key = event.target
             key.classList.add("highlight")
             removeHighlight(key)
-            // while (playerSequence < soundSequence) {
             if (playerSequence.length == soundSequence.length) {
                 checkCorrect();
-            }
-        // }
-            // } else {
-            // check your response button and add event to the button
-            // checkCorrect()
-            // }      
+            }   
         }
     });
 
@@ -91,11 +76,9 @@ $(document).ready(function () {
     function delayPlay(x, n) { // x - array index, n - file to play
         setTimeout(function () {
             n.play()
-            console.log(n)
-            console.log(n.src)
             // highlight the key that is playing
-            let fileName = (n.src.split('/').splice(2)[5]).slice(0, -4); // split file src url into parts, grab the last one and remove file extension
-            console.log(fileName);
+            // split file src url into parts, grab the last one and remove file extension
+            let fileName = (n.src.split('/').splice(2)[5]).slice(0, -4); 
             let key = document.getElementById(`${fileName}`)
 
             if (hard===false) {
@@ -109,33 +92,25 @@ $(document).ready(function () {
     function game() {
         playerSequence = []
         noteSequence = []
-        console.log(level)
         roundStarted = true
         // generate random sequence of sounds
         let random = shuffle()
-
         // truncate random sequence to equal level
         random = random.slice(0, level); // added 2 for testing
         // play sequence
         soundSequence = random
         for (let sound of soundSequence) {
-            // console.log(soundSequence.indexOf(sound.src))
             delayPlay(soundSequence.indexOf(sound), sound)
             let note = sound.src.split('/').splice(2)[5].slice(0, -4)
-            console.log(note)
             noteSequence.push(note)
         }
     }
 
     //Check if given answer is correct -> playerSequence does not seem to update the global list so 
     function checkCorrect(note) {
-        console.log(playerSequence)
-        console.log(noteSequence)
 
-        // if (playerSequence.length == soundSequence.length) {
         if (JSON.stringify(playerSequence) === JSON.stringify(noteSequence)) {
             console.log("checked player seq:", playerSequence)
-            console.log("Correct!")
             score++
             level++
             setTimeout(function () {
@@ -143,16 +118,14 @@ $(document).ready(function () {
             }, 1000);
 
         } else {
-            console.log("wrong this time! try again")
             setTimeout(function () {
                 alert("Wrong! Try again!");
             }, 1000);
             level = 1
+            score = 0
         }
   
         roundStarted = false;
-        console.log(playerSequence)
-
 
         $("#scorebox").html(score);
         $("#level").html(level);
@@ -168,20 +141,5 @@ $(document).ready(function () {
         });
         console.log(shuffledNotes)
         return shuffledNotes
-    }
-
-    function nextRound() {
-        level += 1;
-        const nextSequence = [...sequence];
-        nextSequence.push(nextStep());
-    }
-
-    function correctAnswer() {
-        score++
-        nextRound()
-    }
-
-    function gameOver() {
-
     }
 });
