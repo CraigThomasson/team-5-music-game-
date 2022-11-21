@@ -38,6 +38,7 @@ $(document).ready(function () {
 
     // add event listener to the music keys
     $(".key").click(function (event) {
+        console.log('round started', roundStarted)
         if (roundStarted !== true) {
             console.log(event.target.id + ' clicked!');
             let key = event.target
@@ -52,7 +53,7 @@ $(document).ready(function () {
         }
 
         // check if round started and record player responses
-        if (roundStarted === true) {
+        if (roundStarted == true) {
             console.log(soundSequence.length);
             let audio = new Audio('src/assets/audio/' + event.target.id + '.mp3');
             audio.play()
@@ -60,6 +61,10 @@ $(document).ready(function () {
 
             playerSequence.push(response);
             console.log(playerSequence.length);
+
+            let key = event.target
+            key.classList.add("highlight")
+            removeHighlight(key)
             // while (playerSequence < soundSequence) {
             if (playerSequence.length == soundSequence.length) {
                 checkCorrect();
