@@ -62,6 +62,10 @@ Once they have passed the intial levels of learning each of the 7 notes, the com
 
 * The audio files for the piano note were sourced from [Pixabay](https://pixabay.com/sound-effects/search/octave/)
 
+* The [Bootstrap 4 Library](https://getbootstrap.com/docs/4.6/getting-started/introduction/) was used to help create the HTML and CSS
+
+* The [jQuery Library](https://jquery.com/) was used to help with the Javascript
+
 ### Team Members
 
 * [Craig Thomasson](https://www.linkedin.com/in/craig-thomasson-webdev/)
