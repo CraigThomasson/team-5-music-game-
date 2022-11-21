@@ -28,7 +28,6 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: left;
-    /* background-image: linear-gradient(to bottom right, rgb(245, 195, 97) 0%, rgb(94, 48, 173) 51%, #30D2BE 100%); */
     z-index: -2;
 }
 
@@ -45,8 +44,6 @@ h2,
 h3 {
     font-family: 'Russo One', sans-serif;
 }
-
-
 
 /* 1. Colors */
 .yellow {
@@ -81,7 +78,6 @@ h3 {
     background-color: rgb(56, 118, 139);
 }
 
-
 /* 2. Header */
 
 .black {
@@ -108,7 +104,6 @@ h3 {
     font-weight: 500;
     letter-spacing: 1px;
     transition: 0.3s;
-    /* background: #fc4a1a; */
     background: #fc4a1a;
     /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #f7b733, #fc4a1a);
@@ -151,8 +146,6 @@ h3 {
     bottom: 0;
     width: 100%;
     height: 60px;
-    /* line-height: 40px; */
-    /* background-color: #f5f5f5; */
     padding-left: 1em;
     font-size: 0.9em;
     color: #f5f5f5;
